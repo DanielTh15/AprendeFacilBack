@@ -1,10 +1,13 @@
 package com.example.AprendeFacilBack.Domain.services;
 
+import com.example.AprendeFacilBack.Domain.dto.Curso;
 import org.springframework.stereotype.Service;
 
-@Service
-public class CursoService {
+import java.util.List;
 
 
+public interface CursoService {
+
+    List<Curso> getAll();
 
 }
