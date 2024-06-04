@@ -9,5 +9,6 @@ import java.util.List;
 public interface CursoService {
 
     List<Curso> getAll();
+    Curso save(Curso curso);
 
 }

@@ -21,4 +21,9 @@ public class CursoServiceImp implements CursoService{
     public List<Curso> getAll() {
         return cursoDAO.getAll();
     }
+
+    @Override
+    public Curso save(Curso curso) {
+        return cursoDAO.save(curso);
+    }
 }
