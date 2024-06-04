@@ -4,21 +4,20 @@ import com.example.AprendeFacilBack.Domain.dto.UsuarioDTO;
 import com.example.AprendeFacilBack.Persistence.dao.UsuarioDAO;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class UsuarioServiceImp implements UsuarioService{
+public class AuthServiceImp implements AuthService{
 
     private UsuarioDAO usuarioDAO;
 
-    public UsuarioServiceImp(UsuarioDAO usuarioDAO) {
+    public AuthServiceImp(UsuarioDAO usuarioDAO) {
         this.usuarioDAO = usuarioDAO;
     }
 
 
     @Override
-    public List<UsuarioDTO> getAll(){
-        return usuarioDAO.getAll();
+    public void Register(UsuarioDTO usuarioDTO){
+        usuarioDTO.setLocked(false);
+        usuarioDTO.setDisable(false);
+        usuarioDAO.register(usuarioDTO);
     }
-
 }
