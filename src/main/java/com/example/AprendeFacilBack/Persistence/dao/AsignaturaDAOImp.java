@@ -23,4 +23,24 @@ public class AsignaturaDAOImp implements AsignaturaDAO{
     public List<Asignatura> getAll() {
         return jdbcTemplate.query(select, new AsignaturaMapper());
     }
+
+    @Override
+    public Asignatura save(Asignatura asignatura) {
+        return null;
+    }
+
+    @Override
+    public Asignatura findById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+
+    }
+
+    @Override
+    public Asignatura update(Asignatura asignatura) {
+        return null;
+    }
 }
