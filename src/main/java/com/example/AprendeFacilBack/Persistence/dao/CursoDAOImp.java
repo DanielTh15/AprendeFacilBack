@@ -17,6 +17,9 @@ public class CursoDAOImp implements CursoDAO{
 
     private static final String select = "SELECT * FROM curso";
     private static final String insert = "INSERT INTO curso (nombre, descripcion, id_asignatura, calificacion) VALUES (?,?,?,?)";
+    private static final String update = "";
+    private static final String delete = "";
+    private static final String selectById = select + "WHERE ";
 
     JdbcTemplate jdbcTemplate;
 
