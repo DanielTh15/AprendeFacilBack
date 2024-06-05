@@ -30,7 +30,7 @@ public class AuthController {
     public ResponseEntity<ApiResponse> register(@RequestBody UsuarioDTO usuarioDTO){
         log.debug("Request to insert  user: {}", usuarioDTO);
         authService.Register(usuarioDTO);
-        ApiResponse apiResponse = new ApiResponse("user created", LocalDateTime.now());
+        ApiResponse apiResponse = new ApiResponse("user created");
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 }

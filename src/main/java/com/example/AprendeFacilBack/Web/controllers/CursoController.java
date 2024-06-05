@@ -4,9 +4,7 @@ import com.example.AprendeFacilBack.Domain.dto.Curso;
 import com.example.AprendeFacilBack.Domain.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,11 @@ public class CursoController {
     @GetMapping("/all")
     public ResponseEntity<List<Curso>> getAll(){
        return ResponseEntity.ok(cursoService.getAll());
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Curso> save(@RequestBody Curso curso){
+        return ResponseEntity.ok(cursoService.save(curso));
     }
 
 }

@@ -12,13 +12,9 @@ public class UsuarioDAOImp implements UsuarioDAO{
 
     private JdbcTemplate jdbcTemplate;
 
-    private static final String SELECT_ALL = "SELECT " +
-            "id, " +
-            "nombre," +
-            "apellido, " +
-            "telefono," +
-            "correo," +
-            "bloqueado FROM usuario";
+    private static final String SELECT_ALL = "SELECT * FROM usuario";
+
+    private static  final String FIND_BY_EMAIL = "SELECT * FROM usuario us WHERE us.correo = ?";
 
 
     private  static  final String INSERT = "INSERT INTO usuario (id, nombre, apellido, " +
@@ -44,5 +40,12 @@ public class UsuarioDAOImp implements UsuarioDAO{
                 usuarioDTO.getLocked(),
                 usuarioDTO.getDisable(),
                 usuarioDTO.getPassword());
+    }
+
+
+    @Override
+    public UsuarioDTO getUserByEmail(String email){
+        UsuarioDTO usuarioDTO = jdbcTemplate.queryForObject(FIND_BY_EMAIL, new UsuarioMapper(), email);
+        return usuarioDTO;
     }
 }

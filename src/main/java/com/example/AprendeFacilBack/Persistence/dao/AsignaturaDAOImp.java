@@ -1,6 +1,7 @@
 package com.example.AprendeFacilBack.Persistence.dao;
 
 import com.example.AprendeFacilBack.Domain.dto.Asignatura;
+import com.example.AprendeFacilBack.Persistence.mapper.AsignaturaMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,6 @@ public class AsignaturaDAOImp implements AsignaturaDAO{
 
     @Override
     public List<Asignatura> getAll() {
-        return null;
+        return jdbcTemplate.query(select, new AsignaturaMapper());
     }
 }

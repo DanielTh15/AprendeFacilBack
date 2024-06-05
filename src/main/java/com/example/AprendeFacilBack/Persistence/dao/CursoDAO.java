@@ -8,4 +8,5 @@ public interface CursoDAO {
 
     List<Curso> getAll();
 
+    Curso save(Curso curso);
 }

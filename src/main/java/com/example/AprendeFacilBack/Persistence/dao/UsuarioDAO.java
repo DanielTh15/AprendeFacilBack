@@ -8,4 +8,6 @@ public interface UsuarioDAO {
     List<UsuarioDTO> getAll();
 
     void register(UsuarioDTO usuarioDTO);
+
+    UsuarioDTO getUserByEmail(String email);
 }

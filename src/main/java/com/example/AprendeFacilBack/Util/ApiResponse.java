@@ -1,16 +1,16 @@
 package com.example.AprendeFacilBack.Util;
 
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+@Data
 public class ApiResponse {
     private  String message;
 
-    private LocalDateTime localDateTime;
 
-    public ApiResponse(String message, LocalDateTime localDateTime) {
+    public ApiResponse(String message) {
         this.message = message;
-        this.localDateTime = localDateTime;
     }
 }
