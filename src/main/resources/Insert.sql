@@ -17,9 +17,9 @@ INSERT INTO USUARIO (id, nombre, apellido, bloqueado, deshabilitado, contraseña
 
 -- Insertar datos en la tabla INSCRIPCION
 INSERT INTO INSCRIPCION (id_usuario, id_curso) VALUES
-('user01', 1),
-('user02', 2),
-('user03', 3);
+('user01', 1,'2024-06-02'),
+('user02', 2, '2024-06-02'),
+('user03', 3,'2024-06-02');
 
 -- Insertar datos en la tabla TEMA
 INSERT INTO TEMA (id_curso, nombre, contenido, recursos) VALUES

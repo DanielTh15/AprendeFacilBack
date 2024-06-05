@@ -21,4 +21,26 @@ public class AsignaturaServiceImp implements AsignaturaService{
     public List<Asignatura> getAll() {
         return asignaturaDAO.getAll();
     }
+
+    @Override
+    public Asignatura save(Asignatura asignatura) {
+
+        return asignaturaDAO.save(asignatura);
+    }
+
+    @Override
+    public Asignatura findById(Integer id) {
+
+        return null;
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+
+    }
+
+    @Override
+    public Asignatura update(Asignatura asignatura) {
+        return null;
+    }
 }

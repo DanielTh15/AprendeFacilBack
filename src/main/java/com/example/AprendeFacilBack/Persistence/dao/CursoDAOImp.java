@@ -36,6 +36,7 @@ public class CursoDAOImp implements CursoDAO{
     public Curso save(Curso curso) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
+            // el primer argumento en prepareStatement inserta los datos y el segundo trae la clave autogenerada
             PreparedStatement ps = con.prepareStatement(insert, new String[]{"id"});
             DAOutil.setPrepareStatement(ps, new Object[]{
                  curso.getName(),
