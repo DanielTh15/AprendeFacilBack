@@ -1,6 +1,10 @@
 package com.example.AprendeFacilBack.Domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @Data
 public class UsuarioDTO {
@@ -13,5 +17,7 @@ public class UsuarioDTO {
     private String email;
     private String phone;
     private String password;
+
+
 
 }
