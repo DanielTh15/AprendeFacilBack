@@ -8,4 +8,9 @@ public interface AsignaturaService {
 
     List<Asignatura> getAll();
 
+    Asignatura save(Asignatura asignatura);
+    Asignatura findById(Integer id);
+    void deleteById(Integer id);
+    Asignatura update(Asignatura asignatura);
+
 }

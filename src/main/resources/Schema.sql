@@ -26,6 +26,7 @@ CREATE TABLE USUARIO (
 CREATE TABLE INSCRIPCION (
     id_usuario varchar(20) NOT NULL,
     id_curso int NOT NULL,
+    fecha date not null,
     PRIMARY KEY (id_usuario, id_curso),
     FOREIGN KEY (id_usuario) REFERENCES USUARIO(id),
     FOREIGN KEY (id_curso) REFERENCES CURSO(id)

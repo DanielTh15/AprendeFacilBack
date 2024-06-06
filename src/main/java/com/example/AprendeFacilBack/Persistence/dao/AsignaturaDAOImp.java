@@ -2,15 +2,21 @@ package com.example.AprendeFacilBack.Persistence.dao;
 
 import com.example.AprendeFacilBack.Domain.dto.Asignatura;
 import com.example.AprendeFacilBack.Persistence.mapper.AsignaturaMapper;
+import com.example.AprendeFacilBack.Web.util.DAOutil;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
 public class AsignaturaDAOImp implements AsignaturaDAO{
 
     private static final String select = "SELECT * FROM asignatura";
+    private static final String selectById = select + "WHERE id = ?";
+    private static final String insert = "INSERT INTO asignatura (nombre) VALUES (?)";
 
     JdbcTemplate jdbcTemplate;
 
@@ -26,7 +32,16 @@ public class AsignaturaDAOImp implements AsignaturaDAO{
 
     @Override
     public Asignatura save(Asignatura asignatura) {
-        return null;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(insert, new String[]{"id"});
+            DAOutil.setPrepareStatement(ps, new Object[]{
+                    asignatura.getNombre()
+            });
+            return ps;
+        }, keyHolder);
+        asignatura.setId(keyHolder.getKey().intValue());
+        return asignatura;
     }
 
     @Override
