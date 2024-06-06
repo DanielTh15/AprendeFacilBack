@@ -15,8 +15,9 @@ import java.util.List;
 public class AsignaturaDAOImp implements AsignaturaDAO{
 
     private static final String select = "SELECT * FROM asignatura";
-    private static final String selectById = select + "WHERE id = ?";
+    private static final String selectById = select + " WHERE id = ?";
     private static final String insert = "INSERT INTO asignatura (nombre) VALUES (?)";
+    private static final String delete = "DELETE FROM asignatura WHERE id = ?";
 
     JdbcTemplate jdbcTemplate;
 
@@ -46,7 +47,7 @@ public class AsignaturaDAOImp implements AsignaturaDAO{
 
     @Override
     public Asignatura findById(Integer id) {
-        return null;
+        return jdbcTemplate.queryForObject(selectById, new AsignaturaMapper(), id);
     }
 
     @Override
