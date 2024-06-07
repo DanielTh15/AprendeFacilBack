@@ -31,7 +31,7 @@ public class AsignaturaServiceImp implements AsignaturaService{
     @Override
     public Asignatura findById(Integer id) {
 
-        return null;
+        return asignaturaDAO.findById(id);
     }
 
     @Override
