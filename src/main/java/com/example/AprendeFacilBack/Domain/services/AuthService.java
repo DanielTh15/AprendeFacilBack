@@ -11,7 +11,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 
 public interface AuthService {
-    void Register (UsuarioDTO usuarioDTO);
+    void Register (UsuarioDTO usuarioDTO) throws AprendoFacilCustomException;
 
 
     HashMap<String, String> login(Login login) throws AprendoFacilCustomException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException;

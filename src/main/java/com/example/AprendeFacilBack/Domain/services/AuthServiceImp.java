@@ -45,7 +45,11 @@ public class AuthServiceImp implements AuthService{
     }
 
     @Override
-    public void Register(UsuarioDTO usuarioDTO){
+    public void Register(UsuarioDTO usuarioDTO) throws AprendoFacilCustomException {
+        UsuarioDTO existUser = usuarioDAO.getUserByEmail(usuarioDTO.getEmail());
+        if (existUser != null){
+            throw new AprendoFacilCustomException("This user is ready, please use other email", HttpStatus.BAD_REQUEST);
+        }
 
         String password = passwordEncoder.encode(usuarioDTO.getPassword());
         usuarioDTO.setPassword(password);

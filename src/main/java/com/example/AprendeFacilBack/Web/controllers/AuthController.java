@@ -32,7 +32,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse> register(@RequestBody UsuarioDTO usuarioDTO){
+    public ResponseEntity<ApiResponse> register(@RequestBody UsuarioDTO usuarioDTO) throws AprendoFacilCustomException {
         log.debug("Request to insert  user: {}", usuarioDTO);
         authService.Register(usuarioDTO);
         ApiResponse apiResponse = new ApiResponse("user created");
@@ -40,12 +40,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Login login) throws AprendoFacilCustomException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException {
+    public ResponseEntity<ApiResponse> login(@RequestBody Login login) throws AprendoFacilCustomException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException {
         log.debug("Request to login  user: {}", login);
         HashMap<String,String> loginData = authService.login(login);
+        ApiResponse apiResponse = new ApiResponse(loginData.get("UserLoggedIn"));
         return ResponseEntity.status(HttpStatus.OK).header(
                 HttpHeaders.AUTHORIZATION,"Bearer "+ loginData.get("token"))
-                .body(loginData.get("UserLoggedIn"));
+                .body(apiResponse);
     }
 
 
