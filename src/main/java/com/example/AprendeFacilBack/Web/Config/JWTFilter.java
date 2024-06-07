@@ -1,6 +1,7 @@
 package com.example.AprendeFacilBack.Web.Config;
 
 import com.example.AprendeFacilBack.Domain.services.JWTService;
+import com.example.AprendeFacilBack.Domain.services.UserDetailService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

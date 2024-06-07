@@ -20,8 +20,8 @@ public class UserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String emailUser) throws UsernameNotFoundException {
         UsuarioDTO usuarioDTO = usuarioDAO.getUserByEmail(emailUser);
-        if (usuarioDTO != null) {
-            throw new UsernameNotFoundException("this user is not ready");
+        if (usuarioDTO == null) {
+            throw new UsernameNotFoundException("User not found with email: " + emailUser);
         }
 
         return User.builder()
