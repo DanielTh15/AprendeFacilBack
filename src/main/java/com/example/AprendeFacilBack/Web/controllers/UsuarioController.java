@@ -2,11 +2,13 @@ package com.example.AprendeFacilBack.Web.controllers;
 
 import com.example.AprendeFacilBack.Domain.dto.UsuarioDTO;
 import com.example.AprendeFacilBack.Domain.services.UsuarioService;
+import com.example.AprendeFacilBack.Web.Error.AprendoFacilCustomException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,5 +32,9 @@ public class UsuarioController {
         List<UsuarioDTO> usuarioDTOS = usuarioService.getAll();
         log.debug("Request to register user: {}", usuarioDTOS);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioDTOS);
+    }
+    @GetMapping("get-by-id/{email}")
+    public ResponseEntity<UsuarioDTO> getUserById(@PathVariable(value = "email") String email) throws AprendoFacilCustomException {
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getUserById(email));
     }
 }
