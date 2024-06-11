@@ -11,4 +11,5 @@ public interface CursoService {
     List<Curso> getAll();
     Curso save(Curso curso);
 
+    List<Curso> getAllNameFromCurso(String q);
 }

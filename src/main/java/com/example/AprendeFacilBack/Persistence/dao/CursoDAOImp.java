@@ -21,6 +21,8 @@ public class CursoDAOImp implements CursoDAO{
     private static final String delete = "DELETE curso WHERE id = ?";
     private static final String selectById = select + "WHERE id = ?";
 
+    private static final String selectAllName = "select nombre from curso";
+
     JdbcTemplate jdbcTemplate;
 
     public CursoDAOImp(JdbcTemplate jdbcTemplate) {
@@ -48,5 +50,10 @@ public class CursoDAOImp implements CursoDAO{
         }, keyHolder);
         curso.setId(keyHolder.getKey().intValue());
         return curso;
+    }
+
+    @Override
+    public List<String> getAllNamesFromCurso(){
+        return jdbcTemplate.query(selectAllName, (rs, rowNum) -> rs.getString("nombre"));
     }
 }
