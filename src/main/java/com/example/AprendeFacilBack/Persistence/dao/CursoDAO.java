@@ -9,4 +9,6 @@ public interface CursoDAO {
     List<Curso> getAll();
 
     Curso save(Curso curso);
+
+    List<String> getAllNamesFromCurso();
 }
