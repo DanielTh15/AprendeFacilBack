@@ -31,7 +31,8 @@ public class PreguntaAbiertaEstrategy implements PreguntaStrategy<PreguntaAbiert
 
     @Override
     public PreguntaAbierta save(PreguntaAbierta pregunta) {
-        return null;
+        return preguntaAbiertaDAO.save(pregunta);
+
     }
 
     @Override
