@@ -6,9 +6,7 @@ import com.example.AprendeFacilBack.Domain.services.StrategyPattern.PreguntaAbie
 import com.example.AprendeFacilBack.Domain.services.StrategyPattern.PreguntaCerradaStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,8 +27,15 @@ public class PreguntaController {
 
 
     @GetMapping("/abierta/all")
-    public ResponseEntity<List<PreguntaAbierta>> PreguntasAbiertas(){
+    public ResponseEntity<List<PreguntaAbierta>> getAll(){
         preguntaService.setStrategy(preguntaAbiertaEstrategy);
         return ResponseEntity.ok(preguntaAbiertaEstrategy.list());
     }
+
+    @PostMapping("/abierta/save")
+    public ResponseEntity<PreguntaAbierta> save(@RequestBody PreguntaAbierta preguntaAbierta){
+        preguntaService.setStrategy(preguntaAbiertaEstrategy);
+        return ResponseEntity.ok(preguntaAbiertaEstrategy.save(preguntaAbierta));
+    }
+
 }
