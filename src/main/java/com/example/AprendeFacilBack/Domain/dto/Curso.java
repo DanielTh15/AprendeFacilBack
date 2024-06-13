@@ -1,5 +1,6 @@
 package com.example.AprendeFacilBack.Domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.sql.ResultSet;
@@ -13,6 +14,9 @@ public class Curso {
   private String decription;
   private Integer id_asignatura;
   private Float calificacion;
+
+  private  Asignatura asignatura;
+
 
   public void setCursoFromRs(ResultSet rs) throws SQLException {
 

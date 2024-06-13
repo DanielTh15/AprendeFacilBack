@@ -16,7 +16,7 @@ public class UsuarioMapper implements RowMapper<UsuarioDTO> {
         usuarioDTO.setPhone(resultSet.getString("telefono"));
         usuarioDTO.setEmail(resultSet.getString("correo"));
         usuarioDTO.setDisable(resultSet.getBoolean("deshabilitado"));
-        usuarioDTO.setPassword(resultSet.getString("contraseña"));
+        usuarioDTO.setPassword(resultSet.getString("contrasena"));
         usuarioDTO.setLocked(resultSet.getBoolean("bloqueado"));
         return  usuarioDTO;
     }

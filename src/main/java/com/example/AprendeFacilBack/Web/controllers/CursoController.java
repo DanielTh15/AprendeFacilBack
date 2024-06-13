@@ -2,6 +2,7 @@ package com.example.AprendeFacilBack.Web.controllers;
 
 import com.example.AprendeFacilBack.Domain.dto.Curso;
 import com.example.AprendeFacilBack.Domain.services.CursoService;
+import com.example.AprendeFacilBack.Web.Error.AprendoFacilCustomException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,13 +33,21 @@ public class CursoController {
 
     @PostMapping("/save")
     public ResponseEntity<Curso> save(@RequestBody Curso curso){
+        log.severe("Request to save course: {}" + curso );
+        curso.setCalificacion(12.4F);
         return ResponseEntity.ok(cursoService.save(curso));
     }
 
+    @GetMapping("/get-by-id/{id}")
+    public ResponseEntity<Curso> getCursoById(@PathVariable Integer id) throws AprendoFacilCustomException {
+        Curso curso = cursoService.getCursoById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(curso);
+    }
 
     @GetMapping("/search/{query}")
     public ResponseEntity<List<Curso>> searchCursosByName(@PathVariable(value = "query") String query){
         log.severe("Request recibida: " +  query);
+
 
         List<Curso> searchedCursos = cursoService.getAllNameFromCurso(query);
         return new ResponseEntity<>(searchedCursos, HttpStatus.OK);

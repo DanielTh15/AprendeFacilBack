@@ -8,6 +8,10 @@ public class AprendoFacilCustomException extends Exception{
         super(message);
         this.status = s;
     }
+    public  AprendoFacilCustomException(String message){
+        super(message);
+        this.status = null;
+    }
 
     public HttpStatus getStatus() {
         return status;
