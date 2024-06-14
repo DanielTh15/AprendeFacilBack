@@ -102,7 +102,6 @@ public class JWTServiceImp implements JWTService {
 
     private PrivateKey loadPrivateKey(String privateKeyPem) throws NoSuchAlgorithmException, InvalidKeySpecException {
             String sanitizedPrivateKey = sanitizePemKey(privateKeyPem);
-            log.info("Clave privada (sanitizada): " + sanitizedPrivateKey);
 
             byte[] decodeKey = Base64.getDecoder().decode(sanitizedPrivateKey);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -112,8 +111,6 @@ public class JWTServiceImp implements JWTService {
     private PublicKey loadPublicKey(String publicKeyPem) throws NoSuchAlgorithmException, InvalidKeySpecException {
         try {
             String sanitizedPublicKey = sanitizePemKey(publicKeyPem);
-            log.info("Clave pública (sanitizada): " + sanitizedPublicKey);
-
             byte[] decodeKey = Base64.getDecoder().decode(sanitizedPublicKey);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));

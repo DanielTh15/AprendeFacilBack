@@ -28,6 +28,11 @@ public class TemaServiceImp implements TemaService{
     }
 
     @Override
+    public List<Tema> getById(Integer id) throws Exception {
+        return temaDAO.getById(id);
+    }
+
+    @Override
     public Tema save(Tema tema) {
         return temaDAO.save(tema);
     }

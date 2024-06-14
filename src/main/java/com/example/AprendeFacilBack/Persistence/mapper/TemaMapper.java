@@ -17,4 +17,6 @@ public class TemaMapper implements RowMapper<Tema> {
         tema.setRecurso(rs.getString("recursos"));
         return tema;
     }
+
+
 }

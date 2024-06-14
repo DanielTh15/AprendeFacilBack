@@ -71,7 +71,7 @@ public class CursoDAOImp implements CursoDAO{
     public Curso getCursoById(Integer id) throws AprendoFacilCustomException {
         Curso curso = null;
         try {
-            curso =  jdbcTemplate.queryForObject(selectById, new go(), id);
+            curso =  jdbcTemplate.queryForObject(selectById, new CursoMapper(), id);
         }catch (EmptyResultDataAccessException e){
             log.severe("Error: " + e.getMessage());
         }

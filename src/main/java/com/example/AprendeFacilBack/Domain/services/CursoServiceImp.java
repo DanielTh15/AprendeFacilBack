@@ -1,6 +1,7 @@
 package com.example.AprendeFacilBack.Domain.services;
 
 import com.example.AprendeFacilBack.Domain.dto.Curso;
+import com.example.AprendeFacilBack.Domain.dto.Tema;
 import com.example.AprendeFacilBack.Persistence.dao.CursoDAO;
 import com.example.AprendeFacilBack.Web.Error.AprendoFacilCustomException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +51,5 @@ public class CursoServiceImp implements CursoService{
         }
         return curso;
     }
+
 }
