@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -20,7 +19,9 @@ public class TemaDAOImp implements TemaDAO{
     private static final String select = "SELECT * FROM tema";
     private static final String save = "INSERT INTO tema (id_curso, nombre, contenido, recursos) values (?,?,?,?)";
 
-    private  static final String selectById = "SELECT * FROM tema WHERE tema.id_curso = ?";
+    private  static final String selectByIdCourse = "SELECT * FROM tema WHERE tema.id_curso = ?";
+
+    private static final String selectByIdTopic = "SELECT  * FROM tema WHERE tema.id = ?";
 
 
     JdbcTemplate jdbcTemplate;
@@ -40,15 +41,26 @@ public class TemaDAOImp implements TemaDAO{
     }
 
     @Override
-    public List<Tema> getById(Integer idCourse) {
+    public List<Tema> getByIdCourse(Integer idCourse) {
         List<Tema> temas = new ArrayList<>();
         try {
-            temas = jdbcTemplate.query(selectById, new TemaMapper(), idCourse);
+            temas = jdbcTemplate.query(selectByIdCourse, new TemaMapper(), idCourse);
 
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
         return temas;
+    }
+
+    @Override
+    public Tema getTopicById(Integer idTopic){
+        Tema tema = null;
+        try {
+            tema = jdbcTemplate.queryForObject(selectByIdTopic, new TemaMapper(), idTopic);
+        }catch ( EmptyResultDataAccessException e) {
+            return null;
+        }
+        return tema;
     }
 
     @Override

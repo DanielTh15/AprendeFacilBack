@@ -10,5 +10,7 @@ public class Tema {
     private String nombre;
     private String contenido;
     private String recurso;
+    //En esta variable es la encargada del almacenar la url que nos da S3 para la visualizacion del recurso del tema
+    private String urlResource;
 
 }

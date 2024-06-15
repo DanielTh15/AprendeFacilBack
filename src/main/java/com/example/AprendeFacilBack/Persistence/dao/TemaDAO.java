@@ -9,7 +9,9 @@ public interface TemaDAO {
     List<Tema> getAll();
     Tema lookByName(String name);
 
-    List<Tema> getById(Integer id) throws Exception;
+    List<Tema> getByIdCourse(Integer id) throws Exception;
+
+    Tema getTopicById(Integer idTopic);
 
     Tema save(Tema tema);
     void deleteBy(Integer id);
