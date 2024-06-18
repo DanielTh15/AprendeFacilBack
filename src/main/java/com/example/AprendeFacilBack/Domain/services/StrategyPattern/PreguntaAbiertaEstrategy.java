@@ -5,6 +5,7 @@ import com.example.AprendeFacilBack.Domain.services.StrategyPattern.PreguntaStra
 import com.example.AprendeFacilBack.Persistence.dao.PreguntaAbiertaDAOImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,10 +35,11 @@ public class PreguntaAbiertaEstrategy implements PreguntaStrategy<PreguntaAbiert
         return preguntaAbiertaDAO.save(pregunta);
 
     }
-
+    @Transactional
     @Override
     public PreguntaAbierta update(PreguntaAbierta pregunta) {
-        return null;
+
+        return preguntaAbiertaDAO.update(pregunta);
     }
 
     @Override

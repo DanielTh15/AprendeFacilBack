@@ -9,11 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/pregunta")
 public class PreguntaController {
-
+    private final Logger logger = Logger.getLogger(PreguntaController.class.getName());
     private final PreguntaService preguntaService;
     private final PreguntaAbiertaEstrategy preguntaAbiertaEstrategy;
     private final PreguntaCerradaStrategy preguntaCerradaStrategy;
@@ -36,6 +37,12 @@ public class PreguntaController {
     public ResponseEntity<PreguntaAbierta> save(@RequestBody PreguntaAbierta preguntaAbierta){
         preguntaService.setStrategy(preguntaAbiertaEstrategy);
         return ResponseEntity.ok(preguntaAbiertaEstrategy.save(preguntaAbierta));
+    }
+    @PutMapping("/abierta/update")
+    public ResponseEntity<PreguntaAbierta> update(@RequestBody PreguntaAbierta preguntaAbierta){
+        logger.severe("datos:{}"+ preguntaAbierta);
+        preguntaService.setStrategy(preguntaAbiertaEstrategy);
+        return ResponseEntity.ok(preguntaAbiertaEstrategy.update(preguntaAbierta));
     }
 
 }

@@ -20,8 +20,8 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
     private static final String delete = "DELETE FROM pregunta p WHERE p.id = ?";
     private static final String insertTablaPadre = "INSERT INTO pregunta (tipo_pregunta, enunciado, id_tema) VALUES (?,?,?)";
     private static final String insertTablaHija = "INSERT INTO pre_abierta (id_pregunta, respuesta_correcta) VALUES (?,?)";
-    private static final String updateTablaPadre = "UPDATE pregunta p SET tipo_pregunta = ?, enunciado = ?, id_tema = ? WHERE p.id = ?";
-    private static final String updateTablaHija = "UPDATE pre_abierta pa SET respuesta_correcta = ? WHERE pa.id_pregunta = ? ";
+    private static final String updateTablaPadre = "UPDATE pregunta SET tipo_pregunta = ?, enunciado = ?, id_tema = ? WHERE id = ?";
+    private static final String updateTablaHija = "UPDATE pre_abierta SET respuesta_correcta = ? WHERE id_pregunta = ? ";
 
     public PreguntaAbiertaDAOImp(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);
@@ -68,12 +68,14 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
     @Override
     public PreguntaAbierta update(PreguntaAbierta pregunta) {
        jdbcTemplate.update(updateTablaPadre,
+               pregunta.getId(),
                pregunta.getTipoPregunta(),
                pregunta.getEnunciado(),
                pregunta.getTema()
        );
 
        jdbcTemplate.update(updateTablaHija,
+               pregunta.getId_pregunta(),
                pregunta.getRespuesta_correcta());
 
         return pregunta;
