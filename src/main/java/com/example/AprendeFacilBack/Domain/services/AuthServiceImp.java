@@ -64,7 +64,7 @@ public class AuthServiceImp implements AuthService{
         UsuarioDTO usuarioDTO = usuarioDAO.getUserByEmail(login.getEmail());
         log.debug("Service to login: {}", usuarioDTO);
         if(usuarioDTO==null){
-            throw new AprendoFacilCustomException("User is not ready", HttpStatus.NOT_FOUND);
+            throw new AprendoFacilCustomException("Password or email are incorrect", HttpStatus.NOT_FOUND);
         }
 
         UsernamePasswordAuthenticationToken loginUser = new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword());

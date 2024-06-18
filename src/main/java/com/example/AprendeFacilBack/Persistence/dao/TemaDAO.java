@@ -7,7 +7,12 @@ import java.util.List;
 public interface TemaDAO {
 
     List<Tema> getAll();
-    List<Tema> lookByName(String name);
+    Tema lookByName(String name);
+
+    List<Tema> getByIdCourse(Integer id) throws Exception;
+
+    Tema getTopicById(Integer idTopic);
+
     Tema save(Tema tema);
     void deleteBy(Integer id);
     Tema update(Tema tema);
