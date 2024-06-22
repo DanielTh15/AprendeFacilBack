@@ -9,6 +9,11 @@ import java.util.List;
 @Repository
 public class Pregunta_CerradaDAOImp extends PreguntaDAO<PreguntaCerrada> implements Pregunta_CerradaDAO {
 
+    private static final String insertTablaPadre = "INSERT INTO pregunta (tipo_pregunta, enunciado, id_tema) VALUES (?,?,?)";
+    private static final String insertHija = "INSERT INTO pre_cerrada (id_pregunta, opcion, es_correcta)";
+    private static final String select = "select * from pregunta p INNER JOIN pre_cerrada pc ON p.id = pc.id_pregunta";
+    private static final String update = "UPDATE pregunta SET ";
+    private static final String delete = "";
 
     public Pregunta_CerradaDAOImp(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);

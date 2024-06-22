@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -20,12 +21,15 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
     private static final String delete = "DELETE FROM pregunta p WHERE p.id = ?";
     private static final String insertTablaPadre = "INSERT INTO pregunta (tipo_pregunta, enunciado, id_tema) VALUES (?,?,?)";
     private static final String insertTablaHija = "INSERT INTO pre_abierta (id_pregunta, respuesta_correcta) VALUES (?,?)";
-    private static final String updateTablaPadre = "UPDATE pregunta SET tipo_pregunta = ?, enunciado = ?, id_tema = ? WHERE id = ?";
-    private static final String updateTablaHija = "UPDATE pre_abierta SET respuesta_correcta = ? WHERE id_pregunta = ? ";
+    private static final String updateTablaPadre = "UPDATE pregunta SET id = ? ,tipo_pregunta = ?, enunciado = ?, id_tema = ? WHERE id = ?";
+    private static final String updateTablaHija = "UPDATE pre_abierta SET id_hija = ?, id_pregunta = ?, respuesta_correcta = ? WHERE id_hija = ?";
+
+
 
     public PreguntaAbiertaDAOImp(JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);
     }
+
 
     @Override
     public List<PreguntaAbierta> list() {
@@ -67,6 +71,9 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
 
     @Override
     public PreguntaAbierta update(PreguntaAbierta pregunta) {
+        System.out.println(pregunta.getId()+ "\n" + pregunta.getTipoPregunta() + "\n" +pregunta.getEnunciado()+ "\n" + pregunta.getTema() + "\n" +
+        pregunta.getId_tabla_hija() +"\n"+ pregunta.getId_pregunta() +"\n"+ pregunta.getRespuesta_correcta()
+        );
        jdbcTemplate.update(updateTablaPadre,
                pregunta.getId(),
                pregunta.getTipoPregunta(),
@@ -75,8 +82,10 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
        );
 
        jdbcTemplate.update(updateTablaHija,
+               pregunta.getId_tabla_hija(),
                pregunta.getId_pregunta(),
-               pregunta.getRespuesta_correcta());
+               pregunta.getRespuesta_correcta()
+       );
 
         return pregunta;
     }

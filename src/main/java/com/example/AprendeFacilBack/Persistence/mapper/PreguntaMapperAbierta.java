@@ -14,6 +14,7 @@ public class PreguntaMapperAbierta extends PreguntaMapper<PreguntaAbierta>{
 
     @Override
     protected void mapSpecificFields(ResultSet rs, PreguntaAbierta preguntaAbierta) throws SQLException {
+        preguntaAbierta.setId_tabla_hija(rs.getInt("id_hija"));
         preguntaAbierta.setId_pregunta(rs.getInt("id_pregunta"));
         preguntaAbierta.setRespuesta_correcta(rs.getString("respuesta_correcta"));
 
