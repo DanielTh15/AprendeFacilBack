@@ -38,40 +38,41 @@ public class Pregunta_CerradaDAOImp extends PreguntaDAO<PreguntaCerrada> impleme
     }
 
     @Override
-    public List<PreguntaCerrada> save(List<PreguntaCerrada> preguntas) {
-        for(PreguntaCerrada pregunta: preguntas) {
-            KeyHolder key = new GeneratedKeyHolder();
-            KeyHolder key1 = new GeneratedKeyHolder();
-            jdbcTemplate.update(consulta -> {
-                PreparedStatement ps = consulta.prepareStatement(insertTablaPadre, new String[]{"id"});
-                DAOutil.setPrepareStatement(ps, new Object[]{
-                        pregunta.getTipoPregunta(),
-                        pregunta.getEnunciado(),
-                        pregunta.getTema()
+    public PreguntaCerrada save(PreguntaCerrada pregunta) {
 
-                });
-                return ps;
-            }, key);
+        KeyHolder key = new GeneratedKeyHolder();
+        KeyHolder key1 = new GeneratedKeyHolder();
+        jdbcTemplate.update(consulta -> {
+            PreparedStatement ps = consulta.prepareStatement(insertTablaPadre, new String[]{"id"});
+            DAOutil.setPrepareStatement(ps, new Object[]{
+                    pregunta.getTipoPregunta(),
+                    pregunta.getEnunciado(),
+                    pregunta.getTema()
 
-            pregunta.setId((Integer) key.getKey());
+            });
+            return ps;
+        }, key);
+
+        pregunta.setId((Integer) key.getKey());
         /*
         System.out.println(  pregunta.getTipoPregunta() + "\n" +pregunta.getEnunciado()+ "\n" + pregunta.getTema() + "\n" +
                 pregunta.getOpcion()+"\n"+ pregunta.getId() +"\n"+ pregunta.isEs_correcta() );
         */
 
-            jdbcTemplate.update(consulta1 -> {
-                PreparedStatement ps1 = consulta1.prepareStatement(insertHija, new String[]{"id"});
-                DAOutil.setPrepareStatement(ps1, new Object[]{
-                        pregunta.getIdHija(),
-                        pregunta.getOpcion(),
-                        pregunta.isEs_correcta()
+        jdbcTemplate.update(consulta1 -> {
+            PreparedStatement ps1 = consulta1.prepareStatement(insertHija, new String[]{"id"});
+            DAOutil.setPrepareStatement(ps1, new Object[]{
+                    pregunta.getIdHija(),
+                    pregunta.getOpcion(),
+                    pregunta.isEs_correcta()
 
-                });
-                return ps1;
-            }, key1);
-        }
-        return preguntas;
+            });
+            return ps1;
+        }, key1);
+
+        return pregunta;
     }
+
 
     @Override
     public PreguntaCerrada update(PreguntaCerrada pregunta) {
@@ -81,12 +82,12 @@ public class Pregunta_CerradaDAOImp extends PreguntaDAO<PreguntaCerrada> impleme
                 pregunta.getEnunciado(),
                 pregunta.getTema(),
                 pregunta.getId()
-                );
+        );
         jdbcTemplate.update(updateHija,
                 pregunta.getOpcion(),
                 pregunta.isEs_correcta(),
                 pregunta.getId()
-                );
+        );
 
 
         return pregunta;
@@ -94,7 +95,7 @@ public class Pregunta_CerradaDAOImp extends PreguntaDAO<PreguntaCerrada> impleme
 
     @Override
     public void delete(Integer id) {
-       jdbcTemplate.update(delete, id);
+        jdbcTemplate.update(delete, id);
     }
 
 
