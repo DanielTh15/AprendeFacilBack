@@ -40,38 +40,39 @@ public class Pregunta_CerradaDAOImp extends PreguntaDAO<PreguntaCerrada> impleme
     @Override
     public PreguntaCerrada save(PreguntaCerrada pregunta) {
 
-        KeyHolder key = new GeneratedKeyHolder();
-        KeyHolder key1 = new GeneratedKeyHolder();
-        jdbcTemplate.update(consulta -> {
-            PreparedStatement ps = consulta.prepareStatement(insertTablaPadre, new String[]{"id"});
-            DAOutil.setPrepareStatement(ps, new Object[]{
-                    pregunta.getTipoPregunta(),
-                    pregunta.getEnunciado(),
-                    pregunta.getTema()
+            KeyHolder key = new GeneratedKeyHolder();
+            KeyHolder key1 = new GeneratedKeyHolder();
+            jdbcTemplate.update(consulta -> {
+                PreparedStatement ps = consulta.prepareStatement(insertTablaPadre, new String[]{"id"});
+                DAOutil.setPrepareStatement(ps, new Object[]{
+                        pregunta.getTipoPregunta(),
+                        pregunta.getEnunciado(),
+                        pregunta.getTema()
 
-            });
-            return ps;
-        }, key);
+                });
+                return ps;
+            }, key);
 
-        pregunta.setId((Integer) key.getKey());
+            pregunta.setId((Integer) key.getKey());
         /*
         System.out.println(  pregunta.getTipoPregunta() + "\n" +pregunta.getEnunciado()+ "\n" + pregunta.getTema() + "\n" +
                 pregunta.getOpcion()+"\n"+ pregunta.getId() +"\n"+ pregunta.isEs_correcta() );
         */
 
-        jdbcTemplate.update(consulta1 ->{
-            PreparedStatement ps1 = consulta1.prepareStatement(insertHija, new String[]{"id"});
-            DAOutil.setPrepareStatement(ps1, new Object[]{
-                    pregunta.getIdHija(),
-                    pregunta.getOpcion(),
-                    pregunta.isEs_correcta()
+            jdbcTemplate.update(consulta1 -> {
+                PreparedStatement ps1 = consulta1.prepareStatement(insertHija, new String[]{"id"});
+                DAOutil.setPrepareStatement(ps1, new Object[]{
+                        pregunta.getIdHija(),
+                        pregunta.getOpcion(),
+                        pregunta.isEs_correcta()
 
-            });
-            return ps1;
-        }, key1);
+                });
+                return ps1;
+            }, key1);
 
-        return pregunta;
-    }
+            return pregunta;
+        }
+
 
     @Override
     public PreguntaCerrada update(PreguntaCerrada pregunta) {
