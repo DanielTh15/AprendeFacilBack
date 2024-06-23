@@ -27,7 +27,8 @@ public class PreguntaAbiertaEstrategy implements PreguntaStrategy<PreguntaAbiert
 
     @Override
     public PreguntaAbierta getById(Integer id) {
-        return null;
+        return preguntaAbiertaDAO.getById(id);
+
     }
 
     @Override
@@ -38,12 +39,11 @@ public class PreguntaAbiertaEstrategy implements PreguntaStrategy<PreguntaAbiert
     @Transactional
     @Override
     public PreguntaAbierta update(PreguntaAbierta pregunta) {
-
         return preguntaAbiertaDAO.update(pregunta);
     }
 
     @Override
     public void delete(Integer id) {
-
+       preguntaAbiertaDAO.delete(id);
     }
 }
