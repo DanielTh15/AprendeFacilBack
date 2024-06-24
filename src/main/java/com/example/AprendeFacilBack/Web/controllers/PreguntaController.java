@@ -1,6 +1,7 @@
 package com.example.AprendeFacilBack.Web.controllers;
 
 import com.example.AprendeFacilBack.Domain.dto.PreguntaAbierta;
+import com.example.AprendeFacilBack.Domain.dto.PreguntaCerrada;
 import com.example.AprendeFacilBack.Domain.services.PreguntaService;
 import com.example.AprendeFacilBack.Domain.services.StrategyPattern.PreguntaAbiertaEstrategy;
 import com.example.AprendeFacilBack.Domain.services.StrategyPattern.PreguntaCerradaStrategy;
@@ -43,6 +44,30 @@ public class PreguntaController {
         logger.severe("datos:{}"+ preguntaAbierta);
         preguntaService.setStrategy(preguntaAbiertaEstrategy);
         return ResponseEntity.ok(preguntaAbiertaEstrategy.update(preguntaAbierta));
+    }
+
+    // PREGUNTAS CERRADAS
+
+    @GetMapping("/cerrada/all")
+    public ResponseEntity<List<PreguntaCerrada>> getAllC() {
+        preguntaService.setStrategy(preguntaCerradaStrategy);
+        return ResponseEntity.ok(preguntaCerradaStrategy.list());
+    }
+
+    @PostMapping("/cerrada/save")
+    public ResponseEntity<PreguntaCerrada> save(@RequestBody PreguntaCerrada preguntaCerrada){
+        preguntaService.setStrategy(preguntaCerradaStrategy);
+        return ResponseEntity.ok(preguntaCerradaStrategy.save(preguntaCerrada));
+    }
+    @PutMapping("/cerrada/update")
+    public ResponseEntity<PreguntaCerrada> update(@RequestBody PreguntaCerrada preguntaCerrada){
+        preguntaService.setStrategy(preguntaCerradaStrategy);
+        return ResponseEntity.ok(preguntaCerradaStrategy.update(preguntaCerrada));
+    }
+    @PostMapping("/cerrada/saves")
+    public ResponseEntity<List<PreguntaCerrada>> saveList(@RequestBody List<PreguntaCerrada> preguntasCerradas){
+        preguntaService.setStrategy(preguntaCerradaStrategy);
+        return ResponseEntity.ok(preguntaCerradaStrategy.saveList(preguntasCerradas));
     }
 
 }
