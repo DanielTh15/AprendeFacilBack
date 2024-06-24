@@ -1,6 +1,7 @@
 package com.example.AprendeFacilBack.Domain.services.StrategyPattern;
 
 import com.example.AprendeFacilBack.Domain.dto.Pregunta;
+import com.example.AprendeFacilBack.Domain.dto.PreguntaCerrada;
 
 import java.util.List;
 

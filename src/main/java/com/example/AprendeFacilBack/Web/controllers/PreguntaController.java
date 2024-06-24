@@ -64,5 +64,10 @@ public class PreguntaController {
         preguntaService.setStrategy(preguntaCerradaStrategy);
         return ResponseEntity.ok(preguntaCerradaStrategy.update(preguntaCerrada));
     }
+    @PostMapping("/cerrada/saves")
+    public ResponseEntity<List<PreguntaCerrada>> saveList(@RequestBody List<PreguntaCerrada> preguntasCerradas){
+        preguntaService.setStrategy(preguntaCerradaStrategy);
+        return ResponseEntity.ok(preguntaCerradaStrategy.saveList(preguntasCerradas));
+    }
 
 }

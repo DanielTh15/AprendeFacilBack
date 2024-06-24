@@ -40,4 +40,10 @@ public class PreguntaCerradaStrategy implements PreguntaStrategy<PreguntaCerrada
     public void delete(Integer id) {
       preguntaCerradaDAOImp.delete(id);
     }
+
+
+    public List<PreguntaCerrada> saveList(List<PreguntaCerrada> preguntaCerradaList){
+       return preguntaCerradaDAOImp.saveList(preguntaCerradaList);
+    }
+
 }
