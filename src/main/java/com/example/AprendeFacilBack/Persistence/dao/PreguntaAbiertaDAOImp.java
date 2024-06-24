@@ -21,8 +21,9 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
     private static final String delete = "DELETE FROM pregunta p WHERE p.id = ?";
     private static final String insertTablaPadre = "INSERT INTO pregunta (tipo_pregunta, enunciado, id_tema) VALUES (?,?,?)";
     private static final String insertTablaHija = "INSERT INTO pre_abierta (id_pregunta, respuesta_correcta) VALUES (?,?)";
-    private static final String updateTablaPadre = "UPDATE pregunta SET id = ? ,tipo_pregunta = ?, enunciado = ?, id_tema = ? WHERE id = ?";
-    private static final String updateTablaHija = "UPDATE pre_abierta SET id_hija = ?, id_pregunta = ?, respuesta_correcta = ? WHERE id_hija = ?";
+    private static final String updateTablaPadre = "UPDATE pregunta SET tipo_pregunta = ?, enunciado = ?, id_tema = ? WHERE id = ?";
+    private static final String updateTablaHija = "UPDATE pre_abierta SET respuesta_correcta = ? WHERE id_pregunta = ?";
+
 
 
 
@@ -75,16 +76,15 @@ public class PreguntaAbiertaDAOImp extends PreguntaDAO<PreguntaAbierta> implemen
         pregunta.getId_tabla_hija() +"\n"+ pregunta.getId_pregunta() +"\n"+ pregunta.getRespuesta_correcta()
         );
        jdbcTemplate.update(updateTablaPadre,
-               pregunta.getId(),
                pregunta.getTipoPregunta(),
                pregunta.getEnunciado(),
-               pregunta.getTema()
+               pregunta.getTema(),
+               pregunta.getId() // Utiliza el ID correcto en la cláusula WHERE
        );
 
        jdbcTemplate.update(updateTablaHija,
-               pregunta.getId_tabla_hija(),
-               pregunta.getId_pregunta(),
-               pregunta.getRespuesta_correcta()
+               pregunta.getRespuesta_correcta(),
+               pregunta.getId() // Asumiendo que este es el id_pregunta correcto
        );
 
         return pregunta;

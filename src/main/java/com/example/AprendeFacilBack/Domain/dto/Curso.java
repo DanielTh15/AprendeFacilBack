@@ -14,9 +14,9 @@ public class Curso {
   private String decription;
   private Integer id_asignatura;
   private Float calificacion;
-
-  private  Asignatura asignatura;
-
+  private Asignatura asignatura;
+  private String image;
+  private String urlImg;
 
   public void setCursoFromRs(ResultSet rs) throws SQLException {
 

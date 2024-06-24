@@ -22,9 +22,10 @@ public class CursoDAOImp implements CursoDAO{
 
     private static final String select = "SELECT curso.id, curso.nombre, " +
             "curso.descripcion, curso.id_asignatura, curso.calificacion, " +
+            "curso.img, " +
             "asignatura.id as id_asignatura, asignatura.nombre as nombre_asignatura " +
             "FROM curso INNER JOIN asignatura ON curso.id_asignatura = asignatura.id";
-    private static final String insert = "INSERT INTO curso (nombre, descripcion, id_asignatura, calificacion) VALUES (?,?,?,?)";
+    private static final String insert = "INSERT INTO curso (nombre, descripcion, id_asignatura, calificacion, img) VALUES (?,?,?,?, ?)";
     private static final String update = "UPDATE curso SET nombre =?, descripcion =?, id_asignatira = ?, calificacion =? WHERE id = ?";
     private static final String delete = "DELETE curso WHERE id = ?";
     private static final String selectById = "select * from curso WHERE id = ?";
@@ -54,7 +55,8 @@ public class CursoDAOImp implements CursoDAO{
                  curso.getName(),
                  curso.getDecription(),
                  curso.getId_asignatura(),
-                 curso.getCalificacion()
+                 curso.getCalificacion(),
+                    curso.getImage()
             });
             return ps;
         }, keyHolder);

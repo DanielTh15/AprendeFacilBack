@@ -3,11 +3,13 @@ package com.example.AprendeFacilBack.Web.controllers;
 import com.example.AprendeFacilBack.Domain.dto.Curso;
 import com.example.AprendeFacilBack.Domain.services.CursoService;
 import com.example.AprendeFacilBack.Web.Error.AprendoFacilCustomException;
-import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -19,11 +21,13 @@ public class CursoController {
     private  static  final Logger log = Logger.getLogger(CursoController.class.getName());
 
     private final CursoService cursoService;
+    private final ObjectMapper objectMapper;
 
 
     @Autowired
-    public CursoController(CursoService cursoService) {
+    public CursoController(CursoService cursoService, ObjectMapper objectMapper) {
         this.cursoService = cursoService;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping("/all")
@@ -32,10 +36,12 @@ public class CursoController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Curso> save(@RequestBody Curso curso){
+    public ResponseEntity<Curso> save(@RequestParam String curso,
+                                      @RequestParam MultipartFile image) throws JsonProcessingException {
+        Curso cur = this.objectMapper.readValue(curso, Curso.class);
         log.severe("Request to save course: {}" + curso );
-        curso.setCalificacion(12.4F);
-        return ResponseEntity.ok(cursoService.save(curso));
+        cur.setCalificacion(12.4F);
+        return ResponseEntity.ok(cursoService.save(cur, image));
     }
 
     @GetMapping("/get-by-id/{id}")

@@ -24,7 +24,7 @@ public class UsuarioDAOImp implements UsuarioDAO{
 
 
     private  static  final String INSERT = "INSERT INTO usuario (id, nombre, apellido, " +
-            "telefono, correo, bloqueado, deshabilitado, contraseña) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            "telefono, correo, bloqueado, deshabilitado, contrasena) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     public UsuarioDAOImp(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

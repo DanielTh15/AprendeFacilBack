@@ -17,6 +17,7 @@ public class TemaServiceImp implements TemaService{
 
     private final AmazonS3ServiceInter amazonS3ServiceInter;
 
+
     @Autowired
     public TemaServiceImp(TemaDAO temaDAO, AmazonS3ServiceInter amazonS3ServiceInter) {
         this.temaDAO = temaDAO;
@@ -47,7 +48,14 @@ public class TemaServiceImp implements TemaService{
 
     @Override
     public List<Tema> getById(Integer id) throws Exception {
-        return temaDAO.getByIdCourse(id);
+
+        List<Tema> temas = temaDAO.getByIdCourse(id);
+        for (Tema tema : temas){
+            String key = tema.getRecurso();
+            String urlResource = amazonS3ServiceInter.getDocUrl(key);
+            tema.setUrlResource(urlResource);
+        }
+        return temas;
     }
 
     @Override

@@ -21,6 +21,7 @@ public class CursoMapper implements RowMapper<Curso> {
         curso.setDecription(resultSet.getString("descripcion"));
         curso.setId_asignatura(resultSet.getInt("id_asignatura"));
         curso.setCalificacion(resultSet.getFloat("calificacion"));
+        curso.setImage(resultSet.getString("img"));
 
         if (queryMetodoSelectALL){
             Asignatura asignatura = new Asignatura();
