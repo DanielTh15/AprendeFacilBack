@@ -7,7 +7,8 @@ import java.util.List;
 public interface UsuarioDAO {
     List<UsuarioDTO> getAll();
 
-    void register(UsuarioDTO usuarioDTO);
+    UsuarioDTO register(UsuarioDTO usuarioDTO);
+    boolean existUserById(String id);
 
     UsuarioDTO getUserByEmail(String email);
 }

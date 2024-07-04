@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 @Data
 public class UsuarioDTO {
-
     private String id;
     private String name;
     private String lastName;
@@ -17,7 +16,6 @@ public class UsuarioDTO {
     private String email;
     private String phone;
     private String password;
-
-
+    private String rol;
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class InscripcionDAOImp implements InscripcionDAO{
 
     public static final String select = "SELECT * FROM inscripcion";
-    public static final String insert = "INSERT INTO inscripcion VALUES (?,?,?)";
+    public static final String insert = "INSERT INTO inscripcion () VALUES (?,?,?)";
     JdbcTemplate jdbcTemplate;
 
     public InscripcionDAOImp(JdbcTemplate jdbcTemplate) {

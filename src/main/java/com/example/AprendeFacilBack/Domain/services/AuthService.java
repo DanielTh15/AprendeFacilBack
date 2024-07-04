@@ -15,4 +15,6 @@ public interface AuthService {
 
 
     HashMap<String, String> login(Login login) throws AprendoFacilCustomException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, JOSEException;
+
+    UsuarioDTO RegisterStudent(UsuarioDTO usuarioDTO) throws AprendoFacilCustomException;
 }

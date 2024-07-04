@@ -54,6 +54,7 @@ public class TemaServiceImp implements TemaService{
             String key = tema.getRecurso();
             String urlResource = amazonS3ServiceInter.getDocUrl(key);
             tema.setUrlResource(urlResource);
+
         }
         return temas;
     }
@@ -64,6 +65,8 @@ public class TemaServiceImp implements TemaService{
         if (tema == null){
             throw new AprendoFacilCustomException("This topic not contain information");
         }
+        String urlResource = getUrlResourceByTopic(tema);
+        tema.setUrlResource(urlResource);
         return tema;
     }
 
@@ -85,5 +88,15 @@ public class TemaServiceImp implements TemaService{
     @Override
     public Tema update(Tema tema) {
         return null;
+    }
+
+    private String getUrlResourceByTopic(Tema tema){
+        String key = tema.getRecurso();
+        String urlResource = "";
+        if (key != null){
+            urlResource = amazonS3ServiceInter.getDocUrl(key);
+        }
+        return urlResource;
+
     }
 }

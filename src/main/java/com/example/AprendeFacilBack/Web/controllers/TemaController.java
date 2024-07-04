@@ -36,17 +36,18 @@ public class TemaController {
     }
 
     @GetMapping("/get-by-id/{idTopic}")
-    public ResponseEntity<Tema> getTopiById(@PathVariable(value = "idTopic") Integer idTopic) throws AprendoFacilCustomException {
+    public ResponseEntity<ApiResponse> getTopiById(@PathVariable(value = "idTopic") Integer idTopic) throws AprendoFacilCustomException {
         Tema tema = temaService.getByIdTopic(idTopic);
-        return ResponseEntity.status(HttpStatus.OK).body(tema);
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Topic Found", tema));
     }
+
     @PostMapping("/save")
     public ResponseEntity<ApiResponse> save(@RequestParam(value = "tema") String tema,
                                             @RequestParam(value = "resource")MultipartFile resource) throws JsonProcessingException {
         Tema temaDTO = this.objectMapper.readValue(tema, Tema.class);
-        temaService.save(temaDTO, resource);
+        Tema temaSaved = temaService.save(temaDTO, resource);
         log.severe("Request for save topic: " + tema);
-        return ResponseEntity.ok(new ApiResponse("Topic saved"));
+        return ResponseEntity.ok(new ApiResponse("Topic saved", temaSaved));
     }
 
     @GetMapping("/get-by-id-course/{idCourse}")
